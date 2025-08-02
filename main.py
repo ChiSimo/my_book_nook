@@ -24,7 +24,10 @@ class Book:
         self.added_on = added_on   # Date the book was added
         self.is_read = is_read    # Wheter the book is marked as read (default is False)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a49db3954c6708e1d3be6620866d1ced93105a3a
 class Library:
     def __init__(self):
         self.books = []  # This list will hold all the books
