@@ -24,6 +24,7 @@ class Book:
         self.added_on = added_on   # Date the book was added
         self.is_read = is_read    # Wheter the book is marked as read (default is False)
 
+
 class Library:
     def __init__(self):
         self.books = []  # This list will hold all the books
@@ -139,21 +140,42 @@ def mark_as_read():
     except ValueError:
         print(Fore.RED + "Ops! That doesn't look like a number. Try again! ")
 
-library = Library()
-load_books_from_file()   # Save books when the app starts
+def delete_book(book_list):
+    book_to_delete = input("Enter the title of the book you want to delete: ")
+    for book in book_list:
+        if book.title.lower() == book_to_delete.lower():
+            book_list.remove(book)
+            print(Fore.GREEN + f"Book '{book.title}' has been deleted from your library.")
+            return
+        print(Fore.RED + f"Book '{book_to_delete}' not found in your library.")
 
-while True: 
-    show_menu()
-    choice = input("What's your next move in the world of books? (1-3): ")
 
-    if choice == "1":
+
+# Function to test
+def is_book_read(book):
+        return book.get("is_read", False)
+
+# Main function
+def run_program():
+    while True: 
+      show_menu()
+      choice = input("What's your next move in the world of books? (1-3): ")
+
+      if choice == "1":
         add_book()
-    elif choice == "2":
+      elif choice == "2":
         show_books()
-    elif choice == "3":
+      elif choice == "3":
         mark_as_read()
-    elif choice == "4":
+      elif choice == "4":
         print(Fore.CYAN + "\nThank you for using My Book Nook - come back soon for another chapter! 📖")
         break
-    else:
+      else:
         print(Fore.RED + "Ops! Please choose 1, 2, 3 or 4 from menu!")
+
+
+    
+if __name__ == "__main__":
+    library = Library()
+    load_books_from_file()  # Load books when the app starts
+    run_program()
